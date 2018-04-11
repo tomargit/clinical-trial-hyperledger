@@ -16,14 +16,14 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "devDependencies": {
+  "dependencies": {
     "chai": "^3.5.0",
     "chai-as-promised": "^6.0.0",
-    "composer-admin": "^0.16.0",
-    "composer-cli": "^0.16.0",
-    "composer-client": "^0.16.0",
-    "composer-connector-embedded": "^0.16.0",
-    "composer-cucumber-steps": "^0.16.0",
+    "composer-cli": "^0.16.6",
+    "composer-client": "^0.16.6",
+    "composer-connector-embedded": "^0.16.6",
+    "composer-cucumber-steps": "^0.16.6",
     "cucumber": "^2.2.0"
-  }
+  },
+  "devDependencies": {}
 }
