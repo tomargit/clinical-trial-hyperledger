@@ -1,0 +1,42 @@
+/**
+ * Clinical Trial business network definition.
+ */
+namespace com.incedoinc.clinical_trial
+
+enum Role {
+	o CRO
+	o PATIENT
+	o SITE_INVESTIGATOR
+}
+
+participant User identified by userId {
+	o String userId
+	o Role roles 
+}
+
+/*asset VistData {
+	
+}*/
+
+asset Visit identified by visitId  {
+	o String visitId
+	o String[] keys
+	o String[] values
+	--> User patient
+	--> User investigator
+}
+
+transaction submitVisit {
+	--> Visit visit
+	o String[] newValues optional
+}
+
+
+
+
+
+
+
+
+
+

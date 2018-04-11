@@ -1,12 +1,29 @@
 {
+  "engines": {
+    "composer": "^0.16.0"
+  },
   "name": "clinical-trial-hyperledger",
   "version": "1.0.0",
-  "description": "",
+  "description": "Clinical Trial blockchain using hyperledger composer",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "prepublish": "composer archive create --sourceType dir --sourceName . -a ./clinical-trial-hyperledger-network.bna"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/tomargit/clinical-trial-hyperledger.git"
   },
   "keywords": [],
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "chai-as-promised": "^6.0.0",
+    "composer-admin": "^0.16.0",
+    "composer-cli": "^0.16.0",
+    "composer-client": "^0.16.0",
+    "composer-connector-embedded": "^0.16.0",
+    "composer-cucumber-steps": "^0.16.0",
+    "cucumber": "^2.2.0"
+  }
 }
