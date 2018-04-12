@@ -11,7 +11,7 @@ enum Role {
 
 participant User identified by userId {
 	o String userId
-	o Role roles 
+	o Role role 
 }
 
 /*asset VistData {
