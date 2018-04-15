@@ -1,7 +1,7 @@
 /**
  * Clinical Trial business network definition.
  */
-namespace com.incedoinc.clinical_trial
+namespace com.incedoinc.clinical
 
 enum Role {
 	o CRO
@@ -13,10 +13,6 @@ participant User identified by userId {
 	o String userId
 	o Role role 
 }
-
-/*asset VistData {
-	
-}*/
 
 asset Visit identified by visitId  {
 	o String visitId

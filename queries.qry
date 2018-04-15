@@ -1,6 +1,20 @@
 query selectVisitByPatient {
-  description: "Select all commodities based on their owner"
+  description: "Select all commodities"
   statement:
-      SELECT com.incedoinc.clinical_trial.Visit
-          WHERE (patient.userId == _$userId)
+      SELECT com.incedoinc.clinical.Visit
+        WHERE (patient==_$userId)
+}
+
+
+query selectVisitByInvestigator {
+  description: "Select all commodities"
+  statement:
+      SELECT com.incedoinc.clinical.Visit
+        WHERE (investigator==_$userId)
+}
+
+query selectVisitByCRO {
+  description: "Select all commodities"
+  statement:
+      SELECT com.incedoinc.clinical.Visit
 }

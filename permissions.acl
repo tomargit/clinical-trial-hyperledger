@@ -1,60 +1,60 @@
-/**
- * Access control rules for mynetwork
- */
-rule CROCRUDRULE {
-  description: "Trader can see/work with their own Commodities"
-  participant(u): "com.incedoinc.clinical_trial.User"
-  operation: ALL
-  resource(c): "com.incedoinc.clinical_trial.Visit"
-  condition: (u.role == 'CRO')
-  action: ALLOW
+/*rule RuleUserCreate {
+    description: "Allow all participants access to all resources"
+    participant(p): "com.incedoinc.clinical.User"
+    operation: CREATE
+    resource(u): "com.incedoinc.clinical.User"
+    condition: (p.role == 'CRO')
+    action: ALLOW
+}*/
+
+rule RuleUserCreate {
+    description: "Allow all participants access to all resources"
+    participant: "ANY"
+    operation: ALL
+    resource: "com.incedoinc.clinical.User"
+    action: ALLOW
 }
+
+rule RuleVisitAssetCreate {
+    description: "Allow all participants access to all resources"
+    participant(p): "com.incedoinc.clinical.User"
+    operation: CREATE, UPDATE
+    resource(u): "com.incedoinc.clinical.Visit"
+    condition: (p.role == 'SITE_INVESTIGATOR' && p.getIdentifier() == u.investigator.getIdentifier())
+    action: ALLOW
+}
+
+rule RuleVisitAssetRead {
+    description: "Allow all participants access to all resources"
+    participant(p): "com.incedoinc.clinical.User"
+    operation: READ
+    resource(u): "com.incedoinc.clinical.Visit"
+    condition: (p.role == 'CRO' || ((p.role == 'PATIENT' || p.role == 'SITE_INVESTIGATOR') && (p.getIdentifier() == u.patient.getIdentifier() ||                                            p.getIdentifier() == u.investigator.getIdentifier())))
+    action: ALLOW
+}
+
+
 /*rule Default {
     description: "Allow all participants access to all resources"
     participant: "ANY"
     operation: ALL
-    resource: "org.acme.trading.*"
+    resource: "com.incedoinc.clinical.*"
     action: ALLOW
 }*/
 
-/*rule R1b_TraderSeeTheirCommodities {
-  description: "Trader can see/work with their own Commodities"
-  participant(t): "org.acme.trading.Trader"
-  operation: ALL
-  resource(c): "org.acme.trading.Commodity"
-  condition: (c.owner.getIdentifier() == t.getIdentifier())
-  action: ALLOW
-}
 
-rule R1a_TraderSeeUpdateThemselvesOnly {
-  description: "Trader can see and update their own record only"
-  participant(t): "org.acme.trading.Trader"
-  operation: READ, UPDATE
-  resource(v): "org.acme.trading.Trader"
-  condition: (v.getIdentifier() == t.getIdentifier())
-  action: ALLOW
-}
+/*rule Default {
+    description: "Allow all participants access to all resources"
+    participant: "ANY"
+    operation: ALL
+    resource: "com.incedoinc.clinical.*"
+    action: ALLOW
+}*/
 
 rule SystemACL {
   description:  "System ACL to permit all access"
-  participant: "org.hyperledger.composer.system.Participant"
+  participant: "ANY"
   operation: ALL
   resource: "org.hyperledger.composer.system.**"
   action: ALLOW
 }
-
-rule NetworkAdminUser {
-    description: "Grant business network administrators full access to user resources"
-    participant: "org.hyperledger.composer.system.NetworkAdmin"
-    operation: ALL
-    resource: "**"
-    action: ALLOW
-}
-
-rule NetworkAdminSystem {
-    description: "Grant business network administrators full access to system resources"
-    participant: "org.hyperledger.composer.system.NetworkAdmin"
-    operation: ALL
-    resource: "org.hyperledger.composer.system.**"
-    action: ALLOW
-}*/
