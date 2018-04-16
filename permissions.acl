@@ -26,12 +26,21 @@ rule RuleVisitAssetCreate {
 
 rule RuleVisitAssetRead {
     description: "Allow all participants access to all resources"
+    participant: "ANY"
+    operation: READ
+    resource(u): "com.incedoinc.clinical.Visit"
+    condition: (true)
+    action: ALLOW
+}
+
+/*rule RuleVisitAssetRead {
+    description: "Allow all participants access to all resources"
     participant(p): "com.incedoinc.clinical.User"
     operation: READ
     resource(u): "com.incedoinc.clinical.Visit"
     condition: (p.role == 'CRO' || ((p.role == 'PATIENT' || p.role == 'SITE_INVESTIGATOR') && (p.getIdentifier() == u.patient.getIdentifier() ||                                            p.getIdentifier() == u.investigator.getIdentifier())))
     action: ALLOW
-}
+}*/
 
 
 /*rule Default {
